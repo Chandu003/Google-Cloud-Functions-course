@@ -18,4 +18,33 @@ In order to add new packages to our new virtual environment we create a file cal
 ```
 pip install -r requirements.txt
 ```
+You can test your Google cloud functions using `functions-frameework`. hello_world is the function in ./hellowworld/main.py 
+```
+functions-framework --target hello_world --debug --port 8000
+```
+hello_world function in ./helloworld/main.py:
+```
+def hello_world(request):
+    request_args = request.args
+    request_json = request.get_json(silent=True)
+    if request_args and 'name' in request_args and 'lastname' in request_args:
+        name = request_args['name']
+        lastname = request_args['lastname']
+    elif request_json and 'name' in request_json and 'lastname' in request_json:
+        name = request_json['name']
+        lastname = request_json['lastname']
 
+    else:
+        name = 'World'
+        lastname=''
+    return f"Hello {name} {lastname}"
+```
+
+You can use POSTMAN to send requests to the url using json.
+![alt text](image.png)
+
+Now to install Google-Cloud SDK, use the link [Google Cloud SDK](https://cloud.google.com/sdk/docs/downloads-versioned-archives)
+and follow the steps in the website itself. To run the gcloud init use:
+```
+./google-cloud-sdk/bin/gcloud init
+```
