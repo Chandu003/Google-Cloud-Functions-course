@@ -48,3 +48,12 @@ and follow the steps in the website itself. To run the gcloud init use:
 ```
 ./google-cloud-sdk/bin/gcloud init
 ```
+## Deploying our function
+First, we have to set our project ID with the following command:
+```
+gcloud config set project [Your PROJECT ID]
+```
+Then we deploy with this command:
+```
+gcloud functions deploy [FUNCTION NAME] --runtime python37 --trigger-http
+```
