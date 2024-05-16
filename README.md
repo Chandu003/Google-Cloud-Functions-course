@@ -57,3 +57,15 @@ Then we deploy with this command:
 ```
 gcloud functions deploy [FUNCTION NAME] --runtime python37 --trigger-http
 ```
+
+create a source-bucket and a destination bucket and then add viewer access for sourcebucket and creator access for destination bucket
+we can deploy google cloud function written in python using gcloud command shown below.
+```
+/Users/chanduadari/Documents/google-cloud-sdk/bin/gcloud functions deploy process_file \
+    --runtime python311 \
+    --trigger-resource source-bucket-bre \
+    --trigger-event google.storage.object.finalize \
+    --entry-point process_file \
+    --region us-central1
+```
+As soon as a .cpp file is placed in source-bucket-bre the process_file will read that .cpp file and processes the file and generate biz rules. The generated business rules are send to desination-bucket in a form of txt file.
