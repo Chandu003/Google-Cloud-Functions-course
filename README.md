@@ -69,3 +69,86 @@ we can deploy google cloud function written in python using gcloud command shown
     --region us-central1
 ```
 As soon as a .cpp file is placed in source-bucket-bre the process_file will read that .cpp file and processes the file and generate biz rules. The generated business rules are send to desination-bucket in a form of txt file.
+
+-----------------------------------------------------------------------
+## Streamlit Intro
+To install `streamlit`, use 
+```
+pip install streamlit
+```
+
+You can print content on screen using `st.write()` and `Magic`
+
+```
+st.title('Hello Streamlit World! :100:')
+st.write('We Learn Streamlit!!!!')
+```
+You can even pass the list or dict to st.write
+```
+l1 = [1,2,3,4,5]
+st.write(l1)
+```
+Using Magic we can directly put string 'hello' in code to have it displayed in web app. And even for dataframe as well as shown below.
+```
+'Displaying using magic :smile:'
+
+df = pd.DataFrame({
+    'first':[1,2,3,4,5],
+    'second':[45,32,12,45,45]
+})
+
+df
+```
+Emojis can also be displayed using [Streamlit emoji shortcodes](https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/)
+![alt text](image-1.png)
+
+We can add Text input and Number input to App using the below code.
+```
+# Text input 
+name = st.text_input('Your Name ')
+
+if name:
+    st.write(f'Hello {name}!!')
+
+# Number input
+x = st.number_input('Enter a number', min_value=1,max_value=99,step=1)
+
+st.write(f'The current number is {x}')
+```
+
+We have `st.divider()` to have a horizontal line which is used for better readability.
+And there are multiple methods available like `checkbox`, `radio`, `select` button using those features we display data. For example,
+```
+#checkbox
+agree = st.checkbox('I agree')
+
+if agree:
+    'Great, You Agreed!'
+
+checked = st.checkbox('Contunue',value=True)
+
+if checked:
+    ':+1:'*
+
+df = pd.DataFrame({'Name':['chan','ram'],
+                   'age':[34,22]})
+if st.checkbox('Show data'):
+    df
+st.divider()
+# Radio pattern
+pets = ['cat','dog','fish']
+pet = st.radio('Fav pet',pets,index=2,key='your_pet') # to add a pre-select radio 
+st.write('Your fav pet:',pet)
+
+st.session_state.your_pet *3
+st.divider()
+# select
+cities = ['London','berlin','madrid']
+city = st.selectbox('Your city',cities,index=1)
+
+'You live in ', city
+```
+
+
+
+
