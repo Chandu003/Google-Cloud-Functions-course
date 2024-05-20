@@ -53,6 +53,40 @@ city = st.selectbox('Your city',cities,index=1)
 
 'You live in ', city
 
+# Slider
+
+x = st.slider('x',value=10)
+
+st.write(f'x is {x}')
+
+x = st.slider('x',value=10, min_value=12, max_value=55,step=3)
+
+st.write(f'x is {x}')
+
+st.divider()
+# file upload
+
+file = st.file_uploader('Upload the file:',type=['txt','cpp','xlsx'])
+
+if file:
+    st.write(file)
+    if file.type == 'application/octet-stream':
+        from io import StringIO
+        stringio = StringIO(file.getvalue().decode('utf-8'))
+        string_data = stringio.read()
+        st.write(string_data)
+    elif file.type == 'text/plain':
+        stringio = StringIO(file.getvalue().decode('utf-8'))
+        string_data = stringio.read()
+        st.write(string_data)
+    elif file.type =='text/csv':
+        import pandas as pd
+        df = pd.read_csv(file)
+        st.write(df)
 
 
 
+# Camera input
+camera_photo = st.camera_input('Take a photo')
+if camera_photo:
+    st.image(camera_photo)
