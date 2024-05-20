@@ -1,3 +1,5 @@
 .idea/
 venv/
 .env
+/app_to_bucket/cloud-functions-prac-07-b5fd004a5d78.json
+.DS_Store
