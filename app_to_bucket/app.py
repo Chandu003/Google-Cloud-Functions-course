@@ -43,6 +43,8 @@ def main():
 
                     if response.status_code == 200:
                         st.success(response.json()["message"])
+                        with st.expander('Expand to see BRE'):                           
+                            response.json()["file_content"]
                     else:
                         st.error(f"Error: {response.json()['detail']}")
                 except Exception as e:

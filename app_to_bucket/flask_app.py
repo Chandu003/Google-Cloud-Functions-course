@@ -30,7 +30,20 @@ def upload_file():
     try:
         print(file.stream)
         response = upload_to_gcs(bucket_name, file.stream, file.filename)
-        return jsonify({"message": response}), 200
+        if response:
+            dest_bucket = 'destination-bucket-bre'
+            # Get the bucket
+            client = storage.Client()
+            bucket = client.bucket(dest_bucket)
+            dest_file_name = file.filename.replace('.','_')
+            source_blob = bucket.blob(f'{dest_file_name}_output.txt')
+            while True:
+                if source_blob.exists():
+                    source_blob = bucket.blob(f'{dest_file_name}_output.txt')
+                    break
+            file_contents = source_blob.download_as_text()
+
+        return jsonify({"message": response, 'file_content':file_contents}), 200
     except Exception as e:
         return jsonify({"detail": str(e)}), 500
 
